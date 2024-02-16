@@ -2,4 +2,15 @@ version: "3"
 
 services:
   test_2048:
-    image: alexwhen/docker-2048
+    # Build the Node Docker image using the Dockerfile in the repo
+    build: 
+      context: .
+      dockerfile: Dockerfile
+        
+    # Bind port 8081 on the host to port 8080 on the container
+    ports: 
+      - 8081:8080
+
+    # Bind ./log on the host to /log on the container
+    volumes:
+      - ./log:/log
